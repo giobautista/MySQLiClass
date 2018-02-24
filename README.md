@@ -2,6 +2,12 @@
 Basic PHP MySQLi class to handle common database queries and operations
 
 ## Usage
+Include and call the class
+
+```php
+require_once ('class.php');
+$i = new MySQLiDB;
+```
 
 ### Select
 ```php
