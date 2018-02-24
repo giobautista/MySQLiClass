@@ -19,7 +19,7 @@ if(!$result->num_rows > 0) {
 ```
 
 ### Insert
-```
+```php
 $title = $new->sanitize($_POST['title']);
 $content = $new->sanitize($_POST['content']);
 
@@ -32,7 +32,7 @@ $insert = $new->insert('blog', $data);
 ```
 
 ### Update
-```
+```php
 $title = $new->sanitize($_POST['title']);
 $content = $new->sanitize($_POST['content']);
 
@@ -46,8 +46,10 @@ $where = array(
       );
 
 $update = $new->update('blog', $data, $where);
+```
 
 ### Delete
+```php
 $where = array(
       'id' => $id,
       );
@@ -56,7 +58,7 @@ $delete = $new->delete('blog', $where);
 ```
 
 ### If exist
-```
+```php
 $check = array(
       'first_name' => 'John',
       'last_name' => 'Doe'
