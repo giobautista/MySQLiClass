@@ -3,10 +3,19 @@ Basic PHP MySQLi class to handle common database queries and operations
 
 ## Usage
 Include and call the class
-
 ```php
 require_once ('class.php');
-$i = new MySQLiDB;
+$run = new MySQLiDB;
+
+### Get
+```php
+$cols = array('last_name', 'first_name');
+
+$results = $run->get('users', $cols, 'last_name', 'ASC');
+
+foreach ($results as $result){
+		echo $result->last_name, ', ',$result->first_name,'<br>';
+}
 ```
 
 ### Select
@@ -17,7 +26,7 @@ $where = array(
       'id' => $id,
       );
 
-$result = $new->select($column, 'blog', $where, $limit);
+$result = $run->select($column, 'blog', $where, $limit);
 
 if(!$result->num_rows > 0) {
   header('location: index.php');
@@ -26,21 +35,21 @@ if(!$result->num_rows > 0) {
 
 ### Insert
 ```php
-$title = $new->sanitize($_POST['title']);
-$content = $new->sanitize($_POST['content']);
+$title = $run->sanitize($_POST['title']);
+$content = $run->sanitize($_POST['content']);
 
 $data = array(
         'title' => $title,
         'content' => $content,
         );
 
-$insert = $new->insert('blog', $data);
+$insert = $run->insert('blog', $data);
 ```
 
 ### Update
 ```php
-$title = $new->sanitize($_POST['title']);
-$content = $new->sanitize($_POST['content']);
+$title = $run->sanitize($_POST['title']);
+$content = $run->sanitize($_POST['content']);
 
 $data = array(
       'title' => $title,
@@ -51,7 +60,7 @@ $where = array(
       'id' => '22',
       );
 
-$update = $new->update('blog', $data, $where);
+$update = $run->update('blog', $data, $where);
 ```
 
 ### Delete
@@ -60,7 +69,7 @@ $where = array(
       'id' => $id,
       );
 
-$delete = $new->delete('blog', $where);
+$delete = $run->delete('blog', $where);
 ```
 
 ### If exist
@@ -72,5 +81,5 @@ $check = array(
 
 $column = array('id', 'first_name', 'last_name');
 
-$exists = $new->exists('table', $column, $check);
+$exists = $run->exists('table', $column, $check);
 ```
