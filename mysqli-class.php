@@ -59,7 +59,7 @@ class MySQLiDB
 	# 
 	# foreach ($results as $result){
 	#		echo $result->last_name, ', ',$result->first_name,'<br>';
-    # }
+	# }
 	public function get($table, $columns = '*', $order_by = 'id', $order = 'DESC'){
 
 		if (empty($columns)) {
