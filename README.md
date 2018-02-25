@@ -7,6 +7,7 @@ Include and call the class
 ```php
 require_once ('class.php');
 $run = new MySQLiDB;
+```
 
 ### Get
 ```php
