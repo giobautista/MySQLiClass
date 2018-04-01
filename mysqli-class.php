@@ -228,7 +228,6 @@ class MySQLiDB
 		$str = strip_tags($str);
 		$str = trim($str);
 		$str = htmlspecialchars($str);
-		$str = mysql_escape_string($str);
 
 		return $str;
 	}
