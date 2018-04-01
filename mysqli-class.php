@@ -2,9 +2,9 @@
 /*------------------------------------------------------------------------------
 File:			class.db.php
 Class:			Basic MySQLi
-Description:	Basic PHP MySQLi class to handle common database queries and operations 
+Description:	Basic PHP MySQLi class to handle common database queries and operations
 Version:		1.0.1
-Updated:		9-Dec-2014
+Updated:		01-Apr-2018
 Author:			Gio Bautista
 Homepage:		www.giobautista.com
 --------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ class MySQLiDB
 
 		if ($this->db->connect_errno) {
 			echo "<pre>";
-		    echo "Error MySQLi: (" . $this->db->connect_errno 
+		    echo "Error MySQLi: (" . $this->db->connect_errno
 		    . ") " . $this->db->connect_error;
 			echo "</pre>";
 		    exit();
@@ -47,6 +47,19 @@ class MySQLiDB
 		$this->db->set_charset("utf8");
 	}
 
+
+	# $id = $run->sanitize($_POST['id']);
+	#
+	# $sqlQuery = "SELECT id, first_name, last_name FROM users WHERE id={$id}";
+	# $result = $run->runQuery($sqlQuery);
+	#
+	# if ($result->num_rows > 0 ) {
+	# 	while($row = $result->fetch_assoc()) {
+	# 		echo "id: " . $row["id"]. " - Name: " . $row["first_name"]. " " . $row["last_name"]. "<br>";
+	# 	}
+	# } else {
+	# 	echo "0 result";
+	# }
 	public function runQuery($sql) {
 	    $result = $this->db->query($sql);
 	    return $result;
@@ -54,9 +67,9 @@ class MySQLiDB
 
 
 	# $cols = array('last_name', 'first_name');
-	# 
+	#
 	# $results = $i->get('users', $cols, 'last_name', 'ASC');
-	# 
+	#
 	# foreach ($results as $result){
 	#		echo $result->last_name, ', ',$result->first_name,'<br>';
 	# }
@@ -116,7 +129,7 @@ class MySQLiDB
 	#
 	# $insert = $new->insert('blog', $data);
 	public function insert($table, $data) {
-		
+
 		$fields = implode(",", array_keys($data));
 		$values = "'".implode("','", $data)."'"; # this is a shortcut, find better ways!
 
@@ -216,7 +229,7 @@ class MySQLiDB
 		$str = trim($str);
 		$str = htmlspecialchars($str);
 		$str = mysql_escape_string($str);
-		
+
 		return $str;
 	}
 
