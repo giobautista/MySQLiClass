@@ -9,7 +9,23 @@ require_once ('class.php');
 $run = new MySQLiDB;
 ```
 
-### Get
+### runQuery()
+```php
+$id = $run->sanitize($_POST['id']);
+
+$sqlQuery = "SELECT id, first_name, last_name FROM users WHERE id={$id}";
+$result = $run->runQuery($sqlQuery);
+
+if ($result->num_rows > 0 ) {
+  while($row = $result->fetch_assoc()) {
+    echo "id: " . $row["id"]. " - Name: " . $row["first_name"]. " " . $row["last_name"]. "<br>";
+  }
+} else {
+  echo "0 result";
+}
+```
+
+### get()
 ```php
 $cols = array('last_name', 'first_name');
 
@@ -20,7 +36,7 @@ foreach ($results as $result){
 }
 ```
 
-### Select
+### select()
 ```php
 $column = array('id', 'title', 'content', 'dt');
 
@@ -35,7 +51,7 @@ if(!$result->num_rows > 0) {
 }
 ```
 
-### Insert
+### insert()
 ```php
 $title = $run->sanitize($_POST['title']);
 $content = $run->sanitize($_POST['content']);
@@ -48,7 +64,7 @@ $data = array(
 $insert = $run->insert('blog', $data);
 ```
 
-### Update
+### update()
 ```php
 $title = $run->sanitize($_POST['title']);
 $content = $run->sanitize($_POST['content']);
@@ -65,7 +81,7 @@ $where = array(
 $update = $run->update('blog', $data, $where);
 ```
 
-### Delete
+### delete()
 ```php
 $where = array(
       'id' => $id,
@@ -74,7 +90,7 @@ $where = array(
 $delete = $run->delete('blog', $where);
 ```
 
-### If exist
+### exists()
 ```php
 $check = array(
       'first_name' => 'John',
